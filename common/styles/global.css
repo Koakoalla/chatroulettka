@@ -1,9 +1,25 @@
 @tailwind base;
+
 @tailwind components;
+
 @tailwind utilities;
 
 * {
-  @apply font-montserrat font-medium;
+  @apply font-montserrat font-medium transition focus:outline-none focus:ring focus:ring-cyan-300;
+}
+
+@layer components {
+  .btn {
+    @apply rounded-full px-8 py-1 text-lg font-bold;
+  }
+
+  .btn-primary {
+    @apply bg-gray-50 text-cyan-700 hover:bg-gray-300 active:bg-cyan-100;
+  }
+
+  .input {
+    @apply rounded-full bg-cyan-500 px-5 py-2 text-lg text-white placeholder-cyan-800;
+  }
 }
 
 body {
