@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import { useBoolean, useInterval } from 'react-use';
 
-import { useSocket } from '@/common/context/storeContext';
+import { useName, useSocket } from '@/common/context/storeContext';
+
 
 import CreateChat from './components/CreateChat';
 import JoinChat from './components/JoinChat';
@@ -10,6 +11,7 @@ import RandomChat from './components/RandomChat';
 
   const Home = () => {
   const socket = useSocket();
+  const { name, setName } = useName();
   const [searching, setSearching] = useBoolean(false);
   const [dots, setDots] = useState(0);
 
@@ -40,7 +42,12 @@ import RandomChat from './components/RandomChat';
 
       {!searching && (
         <>
-          <input className="input mb-10 mt-5 sm:mt-0" placeholder="Ваше имя" />
+          <input 
+          className="input mb-10 mt-5 sm:mt-0" 
+          placeholder="Ваше имя" 
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          />
           <div className="flex w-auto flex-col items-center justify-between space-y-10 sm:w-160 md:flex-row md:items-start md:space-y-0">
             <RandomChat setSearching={setSearching} />
             <span className="hidden h-96 w-px bg-violet-100 md:block" />
