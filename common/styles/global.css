@@ -51,15 +51,15 @@
   }
 
   .btn-primary {
-    @apply bg-gray-50 text-black hover:bg-gray-300 active:bg-gray-50;
+    @apply bg-gray-50 text-black hover:bg-pink-600 active:bg-pink-50;
   }
 
   .btn-secondary {
-    @apply bg-zinc-800  text-cyan-400 hover:bg-cyan-900 active:bg-cyan-900;
+    @apply bg-zinc-800  text-pink-800 hover:bg-cyan-900 active:bg-zinc-500;
   }
 
   .input {
-    @apply rounded-full bg-cyan-800 px-5 py-2 text-lg text-white placeholder-pink-200;
+    @apply rounded-full bg-pink-700 px-5 py-2 text-lg text-white placeholder-pink-200;
   }
 
   .h-msgs {

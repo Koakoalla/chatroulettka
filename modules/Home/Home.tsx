@@ -28,11 +28,11 @@ import RandomChat from './components/RandomChat';
     <div className="flex flex-col items-center">
       {searching && (
         <div className="mt-24 flex flex-col items-center">
-          <h3 className="text-2xl text-cyan-400">
+          <h3 className="text-2xl text-pink-600">
             Ищем собеседника для общения{'.'.repeat(dots)}
           </h3>
           <button
-            className="mt-3 rounded-full bg-cyan-400 px-8 py-2 text-cyan-800 hover:bg-cyan-200 active:bg-cyan-800"
+            className="mt-3 rounded-full bg-pink-50 px-8 py-2 font-semibold text-black hover:bg-pink-800 active:bg-pink-600"
             onClick={handleCancelSearch}
           >
             Отмена

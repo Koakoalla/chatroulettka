@@ -26,7 +26,7 @@ const Layout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex h-full w-full flex-col items-center bg-cyan-600 text-pink-300">
+      <div className="flex h-full w-full flex-col items-center bg-zinc-800 text-pink-300">
         <h1 className="mt-12 w-max self-center text-6xl font-bold">Анонимка</h1>
         <h2 className="text-9xl mb-3 w-max font-bold text-opacity-10">
           Сервис для поиска собеседников
