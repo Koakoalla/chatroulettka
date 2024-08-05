@@ -43,7 +43,7 @@ import RandomChat from './components/RandomChat';
       {!searching && (
         <>
           <input 
-          className="input mb-10 mt-5 sm:mt-0" 
+          className="input mb-10 mt-14 sm:mt-0"
           placeholder="Ваше имя" 
           value={name}
           onChange={(e) => setName(e.target.value)}

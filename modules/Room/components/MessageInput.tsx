@@ -77,7 +77,7 @@ const MessageInput = () => {
       <form className="flex w-full" onSubmit={handleSendMessage}>
         <input
           placeholder="Введите сообщение..."
-          className="input flex-1 text-base"
+          className="input w-0 flex-1 text-base"
           value={message}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
