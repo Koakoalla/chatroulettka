@@ -13,13 +13,18 @@ const Users = () => {
               <h3 className="-mb-1 hidden text-center text-xl font-bold md:block">
                   В чате сейчас
               </h3>
-        {room.users.map((user) => (
-          <Label
-            color={room.colorsAssociated.get(user.id) || "blue"}
-            key={user.id}>
-            {user.name}
-          </Label>
-        ))}
+              {room.users.map((user) => {
+                  const color =
+                      Array.from(room.colorsAssociated).length === 0
+                          ? 'blue'
+                          : room.colorsAssociated.get(user.id) || 'blue';
+
+                  return (
+                      <Label color={color} key={user.id}>
+                          {user.name}
+                      </Label>
+                  );
+              })}
       </div>
     </div>
   );

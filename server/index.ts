@@ -24,6 +24,23 @@ let queue: Socket<
 
 let roomsCreated: string[] = [];
 
+const generateId = (
+    io: Server<
+        ClientToServerEvents,
+        ServerToClientEvents,
+        DefaultEventsMap,
+        SockedData
+    >
+): string => {
+  let id = '';
+
+  do {
+    id = Math.random().toString(36).substr(2, 5);
+  } while (io.sockets.adapter.rooms.has(id));
+
+  return id;
+};
+
 const getRoomId = (
   socket: Socket<
     ClientToServerEvents,
@@ -75,7 +92,7 @@ nextApp.prepare().then(async () => {
       socket.data.name = name;
 
       if (queue[0] && !queue.some((user) => user.id === socket.id)) {
-        const roomId = uuidv4();
+        const roomId = generateId(io);
         console.log(roomId, 'private');
 
         const temp = [socket, queue[0]];
@@ -143,6 +160,12 @@ nextApp.prepare().then(async () => {
       });
     });
 
+    socket.on('check_room', (roomId) => {
+      if (roomsCreated.includes(roomId)) {
+        io.to(socket.id).emit('send_check', roomId);
+      }
+    });
+
     // Покидаем очередь
     socket.on('leave_queue', () => {
       queue = queue.filter((user) => user.id !== socket.id);
@@ -167,7 +190,7 @@ nextApp.prepare().then(async () => {
       if (!message) return;
 
       const joinedRoom = getRoomId(socket);
-      const id = uuidv4();
+      const id = generateId(io);
 
       io.to(joinedRoom).emit('new_msg', {
         message,
