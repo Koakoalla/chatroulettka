@@ -1,20 +1,20 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useList } from "react-use";
-import { useSocket } from "@/common/context/storeContext";
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useList } from 'react-use';
+import { useSocket } from '@/common/context/storeContext';
 let typed = false;
 
 const MessageInput = () => {
   const socket = useSocket();
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [usersTyping, usersTypingHandlers] = useList<UserType>();
 
   useEffect(() => {
-    socket.on("user_start_type", (user) => {
+    socket.on('user_start_type', (user) => {
       usersTypingHandlers.push(user);
     });
 
-    socket.on("user_stop_type", (user) => {
+    socket.on('user_stop_type', (user) => {
       const index = usersTyping.findIndex((userArr) => userArr.id === user.id);
 
       if (index !== -1) {
@@ -23,8 +23,8 @@ const MessageInput = () => {
     });
 
     return () => {
-      socket.off("user_start_type");
-      socket.off("user_stop_type");
+      socket.off('user_start_type');
+      socket.off('user_stop_type');
     };
   }, [socket, usersTyping, usersTypingHandlers]);
 
@@ -32,9 +32,9 @@ const MessageInput = () => {
     e.preventDefault();
     if (!message || /^\s*$/.test(message)) return;
 
-    socket.emit("send_msg", message);
-    setMessage("");
-    socket.emit("stop_type");
+    socket.emit('send_msg', message);
+    setMessage('');
+    socket.emit('stop_type');
     typed = false;
   };
 
@@ -42,31 +42,31 @@ const MessageInput = () => {
     setMessage(e.target.value);
 
     if (e.target.value && !typed) {
-      socket.emit("start_type");
+      socket.emit('start_type');
       typed = true;
     } else if (!e.target.value) {
-      socket.emit("stop_type");
+      socket.emit('stop_type');
       typed = false;
     }
   };
 
   const handleInputFocus = () => {
     if (message && !typed) {
-      socket.emit("start_type");
+      socket.emit('start_type');
       typed = true;
     }
   };
 
   const handleInputBlur = () => {
-    socket.emit("stop_type");
+    socket.emit('stop_type');
     typed = false;
   };
 
   const renderUsersTyping = () => {
-    if (!usersTyping.length) return "";
+    if (!usersTyping.length) return '';
 
-    return `${usersTyping.map((user) => user.name).join(", ")} ${
-      usersTyping.length > 1 ? " набирает" : " вам"
+    return `${usersTyping.map((user) => user.name).join(', ')} ${
+      usersTyping.length > 1 ? ' набирает' : ' вам'
     } сообщение...`;
   };
 

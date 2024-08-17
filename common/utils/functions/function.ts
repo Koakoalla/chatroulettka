@@ -11,10 +11,10 @@ export const getTime = (): string => {
   const date = new Date();
 
   const minute = date.getMinutes();
-  const minuteS = `${minute < 10 ? "0" : ""}${minute}`;
+  const minuteS = `${minute < 10 ? '0' : ''}${minute}`;
 
   const hour = date.getHours();
-  const hourS = `${hour < 10 ? "0" : ""}${hour}`;
+  const hourS = `${hour < 10 ? '0' : ''}${hour}`;
 
   const time = `${hourS}:${minuteS}`;
   return time;

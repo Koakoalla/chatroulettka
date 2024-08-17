@@ -1,10 +1,10 @@
-import Chat from "./Chat";
-import UserSettings from "./UserSettings";
-import Users from "./Users";
-import Info from "./Info";
+import Chat from './Chat';
+import UserSettings from './UserSettings';
+import Users from './Users';
+import Info from './Info';
 
-import { BsChevronUp } from "react-icons/bs";
-import { useBoolean } from "react-use";
+import { BsChevronUp } from 'react-icons/bs';
+import { useBoolean } from 'react-use';
 
 const Room = () => {
   const [opened, setOpened] = useBoolean(false);
@@ -14,15 +14,17 @@ const Room = () => {
       <div className=" flex w-full flex-col space-y-5 px-5 sm:px-14 md:hidden">
         <div
           className={`${
-            opened ? "mt-3 max-h-[25rem]" : "max-h-0"
-          } flex flex-col space-y-5 overflow-hidden transition-all `}>
+            opened ? 'mt-3 max-h-[25rem]' : 'max-h-0'
+          } flex flex-col space-y-5 overflow-hidden transition-all `}
+        >
           <Users />
         </div>
         <button
           className={`btn btn-primary w-max ${
-            !opened && "rotate-180"
+            !opened && 'rotate-180'
           } self-center p-2`}
-          onClick={() => setOpened(!opened)}>
+          onClick={() => setOpened(!opened)}
+        >
           <BsChevronUp />
         </button>
       </div>

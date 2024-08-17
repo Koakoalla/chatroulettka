@@ -30,23 +30,21 @@ const Chat = () => {
   }, [messagesHandler, socket]);
 
   return (
-      <div className="h-chat flex justify-between">
-        <span className="hidden h-full w-px bg-zinc-600 md:block" />
+    <div className="h-chat flex justify-between">
+      <span className="hidden h-full w-px bg-zinc-600 md:block" />
       <div className="relative flex h-full w-full flex-col">
         <div
           className="h-msgs overflow-overlay absolute top-0 flex w-full flex-col space-y-4 p-5 pb-0"
           ref={chatRef}
         >
-          <div className="self-center font-bold text-pink-300 ">
-            Чат начат
-          </div>
+          <div className="self-center font-bold text-pink-300 ">Чат начат</div>
           {messages.map((message) => (
             <Message key={message.id} {...message} />
           ))}
         </div>
         <MessageInput />
       </div>
-      <span className="h-full w-px bg-pink-300 hidden md:block" />
+      <span className="hidden h-full w-px bg-pink-300 md:block" />
     </div>
   );
 };

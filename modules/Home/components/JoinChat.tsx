@@ -1,15 +1,15 @@
-import { FormEvent, useState } from "react";
-import { useName, useSocket } from "@/common/context/storeContext";
+import { FormEvent, useState } from 'react';
+import { useName, useSocket } from '@/common/context/storeContext';
 
 const JoinChat = () => {
   const socket = useSocket();
   const { name } = useName();
 
-  const [roomId, setRoomId] = useState("");
+  const [roomId, setRoomId] = useState('');
 
   const handleConnectToRoom = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    socket.emit("join_created", roomId, name);
+    socket.emit('join_created', roomId, name);
   };
 
   return (

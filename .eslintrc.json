@@ -1,3 +1,80 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "airbnb-base",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "plugins": ["@typescript-eslint", "unused-imports", "tailwindcss"],
+      "extends": [
+        "plugin:tailwindcss/recommended",
+        "airbnb-typescript",
+        "next/core-web-vitals",
+        "plugin:prettier/recommended"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "singleQuote": true,
+            "endOfLine": "auto",
+            "semi": true
+          }
+        ],
+        "react/destructuring-assignment": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "react/require-default-props": "off",
+        "react/jsx-props-no-spreading": "off",
+        "@next/next/no-img-element": "off",
+        "import/order": [
+          "error",
+          {
+            "groups": ["builtin", "external", "internal"],
+            "pathGroups": [
+              {
+                "pattern": "react",
+                "group": "external",
+                "position": "before"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["react"],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ],
+        "@typescript-eslint/comma-dangle": "off",
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "tailwindcss/classnames-order": [
+          "warn",
+          {
+            "officialSorting": true
+          }
+        ],
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "error",
+          { "argsIgnorePattern": "^_" }
+        ]
+      }
+    }
+  ]
 }

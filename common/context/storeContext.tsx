@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 import { useRouter } from 'next/router';
-import {useBoolean} from 'react-use';
+import { useBoolean } from 'react-use';
 import io, { Socket } from 'socket.io-client';
 
 import { colors } from '../utils/colors';

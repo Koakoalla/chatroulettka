@@ -25,12 +25,12 @@ let queue: Socket<
 let roomsCreated: string[] = [];
 
 const generateId = (
-    io: Server<
-        ClientToServerEvents,
-        ServerToClientEvents,
-        DefaultEventsMap,
-        SockedData
-    >
+  io: Server<
+    ClientToServerEvents,
+    ServerToClientEvents,
+    DefaultEventsMap,
+    SockedData
+  >
 ): string => {
   let id = '';
 
