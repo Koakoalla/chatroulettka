@@ -142,6 +142,13 @@ nextApp.prepare().then(async () => {
       });
     });
 
+    // Клиент получает сигнал от Google Peer
+    socket.on('signal_received', (signal, toSocketId) => {
+      console.log('received signal to', socket.id);
+
+      io.to(toSocketId).emit('user_signal', socket.id, signal);
+    });
+
     // Cоздание комнаты с ID
     socket.on('create_new', (name) => {
       const roomId = uuidv4();

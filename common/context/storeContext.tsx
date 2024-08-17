@@ -1,8 +1,8 @@
 import {
   Dispatch,
   SetStateAction,
-  useState,
   useEffect,
+  useState,
   useContext,
   createContext,
 } from 'react';
@@ -16,8 +16,8 @@ import { shuffle } from '../utils/functions/function';
 
 interface ContextType {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
-  name: string;
   room: RoomType;
+  name: string;
   setName: Dispatch<SetStateAction<string>>;
 }
 
@@ -43,15 +43,15 @@ export const useName = (): {
 
   return { name, setName };
 };
+const colorNames = shuffle([...colors.keys()]);
 
 const defaultRoom: RoomType = {
   type: 'private',
   users: [],
   id: '',
   colorsAssociated: new Map(),
+  // initiator: false,
 };
-
-const colorNames = shuffle([...colors.keys()]);
 
 const StoreProvider = ({
   children,
@@ -74,24 +74,27 @@ const StoreProvider = ({
     socket.on('new_connection', (user) =>
       setRoom((prev) => ({ ...prev, users: [...prev.users, user] }))
     );
+
     socket.on('send_check', (roomId) => {
       setIsJoining(true);
       router.push(`/${roomId}`);
     });
-    socket.on('disconnected', (user) =>
+
+    const handleUserDisconnected = (user: UserType) => {
       setRoom((prev) => ({
         ...prev,
         users: prev.users.filter((arrUser) => arrUser.id !== user.id),
-      }))
-    );
+      }));
+    };
+    socket.on('disconnected', handleUserDisconnected);
 
     return () => {
       socket.off('join_room');
       socket.off('new_connection');
       socket.off('send_check');
-      socket.off('disconnected');
+      socket.off('disconnected', handleUserDisconnected);
     };
-  }, [room.id, router, socket, setIsJoining]);
+  }, [room.id, router, setIsJoining, socket]);
 
   useEffect(() => {
     let i = 0;
@@ -99,8 +102,11 @@ const StoreProvider = ({
 
     room.users.forEach((user) => {
       if (i === colorNames.length) i = 0;
-      const temp = i % 2 === 0 ? colorNames.length - i : i;
-      colorsAssociated.set(user.id, colorNames[temp] || '');
+
+      const temp = i % 2 === 0 ? colorNames.length - i - 1 : i;
+
+      colorsAssociated.set(user.id, colorNames[temp]);
+
       i += 1;
     });
 

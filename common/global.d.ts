@@ -7,6 +7,7 @@ export declare global {
     user_start_type: (user: UserType) => void;
     user_stop_type: (user: UserType) => void;
     send_check: (roomId: string) => void;
+    user_signal: (userId: string, signal:any) => void;
   }
 
   interface ClientToServerEvents {
@@ -14,6 +15,7 @@ export declare global {
     send_msg: (message: string) => void;
     create_new: (name: string) => void;
     join_created: (roomId: string, name: string) => void;
+    signal_received: (signal: any, toSocketId: string) => void;
     check_room: (roomId: string) => void;
     leave_room: () => void;
     leave_queue: () => void;
@@ -41,6 +43,7 @@ export declare global {
     type: 'public' | 'private';
     users: UserType[];
     colorsAssociated: Map<string, ColorType>;
+    // initiator: boolean;
   }
 
   type ColorType =

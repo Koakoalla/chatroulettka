@@ -2,6 +2,8 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import StoreProvider from '../context/storeContext';
+import PeersProvider from '@/common/context/peersContext';
+import StreamsProvider from '@/common/context/streamContext';
 
 const Layout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   useEffect(() => {
@@ -21,18 +23,24 @@ const Layout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 
   return (
     <StoreProvider>
-      <Head>
-        <title>Анонимка | Сервис для поиска собеседников</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <PeersProvider>
+        <StreamsProvider>
+          <Head>
+            <title>Анонимка | Сервис для поиска собеседников</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
 
-      <div className="flex h-full w-full flex-col items-center">
-        <h1 className="mt-12 w-max self-center text-6xl font-bold">Анонимка</h1>
-        <h2 className="text-9xl mb-3 w-max font-bold text-opacity-10">
-          Сервис для поиска собеседников
-        </h2>
-        {children}
-      </div>
+          <div className="flex h-full w-full flex-col items-center">
+            <h1 className="mt-12 w-max self-center text-6xl font-bold">
+              Анонимка
+            </h1>
+            <h2 className="text-9xl mb-3 w-max font-bold text-opacity-10">
+              Сервис для поиска собеседников
+            </h2>
+            {children}
+          </div>
+        </StreamsProvider>
+      </PeersProvider>
     </StoreProvider>
   );
 };

@@ -1,4 +1,5 @@
-import Chat from './Chat';
+// import Chat from './Chat';
+import VideosContainer from '@/modules/videos/components/VideosConatiner';
 import UserSettings from './UserSettings';
 import Users from './Users';
 import Info from './Info';
@@ -34,8 +35,10 @@ const Room = () => {
           <Users />
         </div>
 
-        <div className="flex-1 px-0 sm:px-5 md:basis-1/2 md:px-0">
-          <Chat />
+        <div className="h-chat flex w-full px-0 sm:px-5 md:basis-1/2 md:px-0">
+          <span className="hidden h-full w-px bg-zinc-600 md:block" />
+          <VideosContainer />
+          <span className="hidden h-full w-px bg-zinc-600 md:block" />
         </div>
 
         <div className="hidden basis-1/4 md:block">

@@ -30,8 +30,7 @@ const Chat = () => {
   }, [messagesHandler, socket]);
 
   return (
-    <div className="h-chat flex justify-between">
-      <span className="hidden h-full w-px bg-zinc-600 md:block" />
+      <div className="flex h-full flex-1 justify-between">
       <div className="relative flex h-full w-full flex-col">
         <div
           className="h-msgs overflow-overlay absolute top-0 flex w-full flex-col space-y-4 p-5 pb-0"
@@ -44,7 +43,6 @@ const Chat = () => {
         </div>
         <MessageInput />
       </div>
-      <span className="hidden h-full w-px bg-pink-300 md:block" />
     </div>
   );
 };
