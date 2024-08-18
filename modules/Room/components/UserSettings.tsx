@@ -23,8 +23,11 @@ const UserSettings = () => {
         Поговорить по аудио
       </button>
       <button
-        className={`${btnClass} ${isScreenStreaming && active}`}
+        className={`${btnClass} ${
+          isScreenStreaming && active
+        } disabled:opacity-30`}
         onClick={handleScreenStreaming}
+        disabled={!navigator.mediaDevices.getDisplayMedia}
       >
         Шерить экран
       </button>
