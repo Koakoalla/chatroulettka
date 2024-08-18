@@ -24,6 +24,7 @@ const VideosContainer = () => {
         <div
           className="absolute top-0 left-0 h-full w-full p-2"
           onClick={() => setSelectedStream(null)}
+          ref={streamContainer}
         >
           <CustomVideo stream={selectedStream} active />
           {selectedStream !== myStream && (

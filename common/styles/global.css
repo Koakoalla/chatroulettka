@@ -69,7 +69,11 @@
   .h-chat {
     height: calc(100% - 6rem);
   }
-
+  @media screen and (max-width: 1536px) {
+    .h-chat {
+      height: calc(100% - 2rem);
+    }
+  }
   .overflow-overlay {
     overflow-y: scroll;
     overflow-y: overlay;
